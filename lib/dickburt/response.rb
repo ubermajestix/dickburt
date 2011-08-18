@@ -7,7 +7,11 @@ class Dickburt::Response
     @body = body
   end
   
+  def to_campfire_hash
+    {:message => {:body => @body, :type => @message_type + "Message"}}
+  end
+  
   def to_json
-    {:message => {:body => @body, :type => @message_type + "Message"}}.to_json
+    self.to_campfire_hash.to_json
   end
 end

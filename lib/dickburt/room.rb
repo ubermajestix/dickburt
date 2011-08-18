@@ -7,13 +7,12 @@ class Dickburt::Room < Map
   end
   
   def speak(response)
-    puts "="*45
-    puts "speak: #{response.inspect}"
-    puts response.to_json
-    puts "="*45
+    logger.info "speak: #{response.inspect}"
     speak = @campfire.http.post("/room/#{id}/speak.json", response.to_json)
-    puts speak.status
-    puts speak.body.inspect
+    logger.info speak.status
+    if speak.status >= 400 
+      logger.error JSON.parse(speak.body).inspect
+    end
   end
   
   def stream

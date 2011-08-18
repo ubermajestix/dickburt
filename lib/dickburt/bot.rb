@@ -8,16 +8,13 @@ class Dickburt::Bot
       commands.detect{|c| text.match(c)}
     end
     
-    def imageme
-      puts "="*45
-      puts 'image me!!!!'
-      puts "="*45
-      url = google_image('funny pugs')
-      Response.new(url, 'Upload')
+    def imageme(query='funny pugs')
+      url = google_image(query)
+      Dickburt::Response.new(url, 'Upload')
     end
     
     def beerme
-      Response.new('http://f.cl.ly/items/333i290f1x2N330u303N/beerme.png', 'Upload')
+      Dickburt::Response.new('http://f.cl.ly/items/333i290f1x2N330u303N/beerme.png', 'Upload')
     end
     
     def google_image(query)
