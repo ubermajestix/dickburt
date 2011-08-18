@@ -15,6 +15,10 @@ class Dickburt::Room < Map
     end
   end
   
+  def join
+    join = @campfire.http.post("/room/#{id}/join.json")
+  end
+  
   def stream
     Twitter::JSONStream.connect(
       :path => "/room/#{id}/live.json",
