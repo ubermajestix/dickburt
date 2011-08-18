@@ -10,6 +10,6 @@ describe Dickburt::Response do
   end
   
   it "should respond to to_json with the appropriate hash" do
-    JSON.parse(@response.to_json).must == @response.to_campfire_hash
+    JSON.parse(@response.to_json).keys.must_include "message"
   end
 end

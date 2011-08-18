@@ -23,11 +23,11 @@ module Dickburt
         end
  
         stream.on_error do |message|
-          puts "ERROR:#{message.inspect}"
+          logger.error "ERROR:#{message.inspect}"
         end
  
         stream.on_max_reconnects do |timeout, retries|
-          puts "Tried #{retries} times to connect."
+          logger.error "Tried #{retries} times to connect."
           exit
         end
   

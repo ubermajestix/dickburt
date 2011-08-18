@@ -6,7 +6,7 @@ class Dickburt::Campfire
   
   def initialize(args={})
     @token = args[:token] 
-    @host = args[:host]
+    @host = "http://#{args[:host]}.campfirenow.com"
   end
   
   def http
@@ -28,7 +28,7 @@ class Dickburt::Campfire
         Dickburt::Room.new(room, self)
       end
     else
-      raise Dickburt::Campfire::Error, response.status + ": " + response.body
+      raise Dickburt::Campfire::Error, response.status.to_s + ": " + response.body
     end
   end
   
