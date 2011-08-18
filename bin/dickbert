@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "dickbert"
+require "trollop"
+Dickburt::Server.run()
