@@ -1,6 +1,7 @@
 module Dickburt
-  puts "="*45
-  puts 'boom!'
-  puts "="*45
+
   VERSION = "0.0.1"
+  puts "="*45
+  puts "Dickburt version #{VERSION} ACTIVATE"
+  puts "="*45
 end

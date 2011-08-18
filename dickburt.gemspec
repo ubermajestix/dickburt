@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "eventmachine"       , "~> 0.12.10"
-  s.add_dependency "patron"             , "~> 4.0.11"
+  s.add_dependency "patron"             , "~> 0.4.11"
   s.add_dependency "logging"            , "~> 1.5.1"
   s.add_dependency "trollop"            , "~> 1.16.2"
   s.add_dependency 'twitter-stream'     , "~> 0.1.14"
