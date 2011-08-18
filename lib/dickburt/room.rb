@@ -7,11 +7,11 @@ class Dickburt::Room < Map
   end
   
   def speak(response)
-    logger.info "speak: #{response.inspect}"
+    puts "speak: #{response.inspect}"
     speak = @campfire.http.post("/room/#{id}/speak.json", response.to_json)
-    logger.info speak.status
+    # logger.info speak.status
     if speak.status >= 400 
-      logger.error JSON.parse(speak.body).inspect
+      # logger.error JSON.parse(speak.body).inspect
     end
   end
   

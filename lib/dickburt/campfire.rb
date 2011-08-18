@@ -6,7 +6,7 @@ class Dickburt::Campfire
   
   def initialize(args={})
     @token = args[:token] 
-    @host = "http://#{args[:host]}.campfirenow.com"
+    @host = "https://#{args[:host]}.campfirenow.com"
   end
   
   def http

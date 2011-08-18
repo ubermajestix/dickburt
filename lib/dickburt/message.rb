@@ -14,7 +14,7 @@ class Dickburt::Message < Map
   end
   
   def to_dickburt?
-    @lavender ||= self[:type] == 'TextMessage' && body.match(/^lavender\:/i)
+    @lavender ||= self[:type] == 'TextMessage' && body.match(/^dickburt\:/i)
     @command = Dickburt::Bot.parse_command(body) if @lavender
     @lavender
   end

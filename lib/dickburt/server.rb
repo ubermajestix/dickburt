@@ -4,7 +4,7 @@ module Dickburt
       EventMachine::run do
         @campfire = Dickburt::Campfire.new(args)
         puts "="*45
-        puts "Connected to #{@campfire.host}"
+        puts "Connected to #{@campfire.host} with token #{@campfire.token}"
   
         @room = @campfire.rooms.detect{|r| r.name == 'Dayjob'}
   
@@ -17,17 +17,18 @@ module Dickburt
  
         stream.each_item do |item|
           message = Dickburt::Message.new(item)
+          puts message.inspect
           if message.to_lavender?
             @room.speak(message.process_command)
           end
         end
  
         stream.on_error do |message|
-          logger.error "ERROR:#{message.inspect}"
+          # logger.error "ERROR:#{message.inspect}"
         end
  
         stream.on_max_reconnects do |timeout, retries|
-          logger.error "Tried #{retries} times to connect."
+          # logger.error "Tried #{retries} times to connect."
           exit
         end
   
