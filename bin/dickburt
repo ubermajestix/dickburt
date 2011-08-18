@@ -2,4 +2,17 @@
 require 'rubygems'
 require "dickburt"
 require "trollop"
-Dickburt::Server.run()
+t = Trollop::Parser.new do 
+  opt :host,    "The campfire url" , :required => true, :type => :string
+  opt :token, "The campfire token for dickburt", :required => true, :type => :string
+end
+
+Trollop::with_standard_exception_handling( t ) do
+  opts = t.parse
+  begin
+    Dickburt::Server.run(opts)
+  rescue ::StandardError => se
+    raise Trollop::CommandlineError, se.message
+  end
+end
+

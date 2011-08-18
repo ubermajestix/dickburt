@@ -1,8 +1,8 @@
 module Dickburt
   class Server
-    def self.run
+    def self.run(args={})
       EventMachine::run do
-        @campfire = Dickburt::Campfire.new
+        @campfire = Dickburt::Campfire.new(args)
         puts "="*45
         puts "Connected to #{@campfire.host}"
   

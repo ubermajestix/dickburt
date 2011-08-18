@@ -5,8 +5,8 @@ class Dickburt::Campfire
   class Error < StandardError; end;
   
   def initialize(args={})
-    @token = 'b9b8d7bb2a812dc03a7332aecf913c9a8125abb6'
-    @host = 'https://everlater.campfirenow.com'
+    @token = args[:token] 
+    @host = args[:host]
   end
   
   def http
