@@ -15,6 +15,8 @@ class Dickburt::Campfire
     @http.headers["Content-Type"] = "application/json"
     @http.username = token 
     @http.password = "x"
+    @http.connect_timeout = 6000
+    @http.timeout = 6000
     @http
   end
   

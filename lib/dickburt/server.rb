@@ -1,29 +1,28 @@
 module Dickburt
-  class Server
+  module Server
+    class << self
+      include Logger
+      include Retryable
+    end
     def self.run(args={})
+      logger.info "boom!"
       EventMachine::run do
-        @campfire = Dickburt::Campfire.new(args)
-        puts "="*45
-        puts "Connected to #{@campfire.host} with token #{@campfire.token}"
-  
-        @room = @campfire.rooms.detect{|r| r.name == 'Dayjob'}
-        @room.join
-        puts "="*45
-        puts "Connected to #{@room.name}(#{@room.id})"
-        puts "Ready for messages..."
-        puts "="*45
-  
+        retryable(:tries => 5, :on => Patron::TimeoutError) do
+          @campfire = Dickburt::Campfire.new(args)
+          puts "="*45
+          puts "Connected to #{@campfire.host} with token #{@campfire.token}"
+          puts "="*45
+          @room = @campfire.rooms.detect{|r| r.name == 'Dayjob'}
+          @room.join
+          puts "Ready for messages..."
+          puts "="*45
+        end
         stream = @room.stream
  
         stream.each_item do |item|
-          puts "="*45
-          puts 'boom'
-          puts "="*45
           message = Dickburt::Message.new(item)
           puts message.inspect
-          if message.to_dickbert?
-            @room.speak(message.process_command)
-          end
+          Dickburt::Bot.process(message, @room, @campfire)
         end
  
         stream.on_error do |message|
@@ -35,7 +34,10 @@ module Dickburt
           exit
         end
   
-        trap("INT") { EM.stop }
+        trap("INT") do 
+          @room.leave if @room
+          EM.stop
+        end  
   
       end
     end

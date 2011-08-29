@@ -1,30 +1,45 @@
-class Dickburt::Room < Map
-  attr_accessor :campfire
-  
-  def initialize(room, campfire)
-    super(room)
-    @campfire = campfire
-  end
-  
-  def speak(response)
-    puts "speak: #{response.inspect}"
-    speak = @campfire.http.post("/room/#{id}/speak.json", response.to_json)
-    # logger.info speak.status
-    if speak.status >= 400 
-      # logger.error JSON.parse(speak.body).inspect
+module Dickburt
+  class Room < Map
+    attr_accessor :campfire
+    attr_accessor :response
+    include Logger
+    def initialize(room, campfire)
+      super(room)
+      @campfire = campfire
     end
-  end
   
-  def join
-    join = @campfire.http.post("/room/#{id}/join.json")
-  end
+    def response=(response)
+      puts "="*45
+      puts response.status
+      puts "="*45
+      if response.status >= 400 
+        logger.error JSON.parse(speak.body).inspect
+      end
+    end
   
-  def stream
-    Twitter::JSONStream.connect(
-      :path => "/room/#{id}/live.json",
-      :host => 'streaming.campfirenow.com',
-      :auth => "#{campfire.token}:x"
-    )
-  end
+    def speak(response)
+      response = @campfire.http.post("/room/#{id}/speak.json", response.to_json)
+    end
   
+    def join
+      response = @campfire.http.post("/room/#{id}/join.json", {})
+    end
+    
+    def leave
+      response = @campfire.http.post("/room/#{id}/leave.json", {})
+    end
+  
+    def stream
+      Twitter::JSONStream.connect(
+        :path => "/room/#{id}/live.json",
+        :host => 'streaming.campfirenow.com',
+        :auth => "#{campfire.token}:x"
+      )
+    end
+  
+    def handle_failure
+    
+    end
+  
+  end
 end

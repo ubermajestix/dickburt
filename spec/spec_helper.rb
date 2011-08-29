@@ -6,8 +6,8 @@ require "minitest/spec"
 require "minitest/autorun"
 require "minitest/mock"
 
-require "ostruct"
-
+require 'fabrication'
+require 'ffaker'
 require "dickburt"
 
 alias :context :describe

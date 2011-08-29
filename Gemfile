@@ -11,4 +11,8 @@ group :development do
   gem "guard"
   # 0.4.0.rc versions are still git-only
   gem "guard-minitest", :git => "https://github.com/guard/guard-minitest.git"
+  gem "fabrication"
+  gem "ffaker", :require => "ffaker"
+  gem 'vcr'
+  gem "fakeweb"
 end
