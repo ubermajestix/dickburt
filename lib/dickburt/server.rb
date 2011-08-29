@@ -12,7 +12,7 @@ module Dickburt
           puts "="*45
           puts "Connected to #{@campfire.host} with token #{@campfire.token}"
           puts "="*45
-          @room = @campfire.rooms.detect{|r| r.name == 'Dayjob'}
+          @room = @campfire.rooms.detect{|r| r.name == opts[:room]}
           @room.join
           puts "Ready for messages..."
           puts "="*45

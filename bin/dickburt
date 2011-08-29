@@ -5,6 +5,7 @@ require "trollop"
 t = Trollop::Parser.new do 
   opt :host,    "The campfire url" , :required => true, :type => :string
   opt :token, "The campfire token for dickburt", :required => true, :type => :string
+  opt :room, "The campfire room name to join", :required => true, :type => :string
 end
 
 Trollop::with_standard_exception_handling( t ) do
