@@ -1,19 +1,26 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require "dickburt"
 require "trollop"
-t = Trollop::Parser.new do 
-  opt :host,    "The campfire url" , :required => true, :type => :string
-  opt :token, "The campfire token for dickburt", :required => true, :type => :string
-  opt :room, "The campfire room name to join", :required => true, :type => :string
-end
+$:.unshift File.expand_path('../../lib/', __FILE__)
+require "dickburt"
 
-Trollop::with_standard_exception_handling( t ) do
-  opts = t.parse
+t = Trollop::Parser.new do 
+  opt :token, "The campfire token for dickburt",  :type => :string
+end 
+
+opts = Trollop::with_standard_exception_handling( t ) do
+  opts = t.parse ARGV
+  host = t.leftovers.shift
+  room = t.leftovers.shift
+  unless host && room
+    raise Trollop::CommandlineError, "host and room must be provided as arguments. Ex: dickburt subdomain_of_my_campfire super_awesome_room" 
+  end
+  
   begin
-    Dickburt::Server.run(opts)
+    Dickburt::Config.set_token(host.to_sym, opts[:token])
+    config = Dickburt::Config.config_hash(host, room)
+    Dickburt::Server.run(config)
   rescue ::StandardError => se
     raise Trollop::CommandlineError, se.message
   end
 end
-

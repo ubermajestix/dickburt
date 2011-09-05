@@ -12,7 +12,7 @@ module Dickburt
           puts "="*45
           puts "Connected to #{@campfire.host} with token #{@campfire.token}"
           puts "="*45
-          @room = @campfire.rooms.detect{|r| r.name == args[:room]}
+          @room = @campfire.rooms.detect{|r| r.name.downcase.gsub(/\s/,'_') == args[:room].downcase.gsub(/\s/,'_')}
           @room.join
           puts "Ready for messages..."
           puts "="*45
@@ -26,7 +26,7 @@ module Dickburt
         end
  
         stream.on_error do |message|
-          puts "ERROR:#{message.inspect}"
+          puts "ERROR: #{message.inspect}"
         end
  
         stream.on_max_reconnects do |timeout, retries|

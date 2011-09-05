@@ -17,7 +17,7 @@ Right now, this sucks, but you have to say "dickburt <somecommand>" or "somecomm
 Examples
 --------
 
-    dickburt imageme hipster ferrets
+    Tyler: dickburt imageme hipster ferrets
     # => will upload the first image it finds for "hipster ferrets" on google image search
     
     Tyler: dickburt whatup
