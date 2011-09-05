@@ -13,6 +13,7 @@ class Dickburt::Campfire
     @http ||= Patron::Session.new
     @http.base_url = host
     @http.headers["Content-Type"] = "application/json"
+    @http.headers['User-Agent'] = "Dickburt #{Dickburt::VERSION}"
     @http.username = token 
     @http.password = "x"
     @http.connect_timeout = 6000
