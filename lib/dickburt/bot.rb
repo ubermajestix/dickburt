@@ -113,6 +113,7 @@ class Dickburt::Bot
     end
     puts @image_url.inspect
     puts @error.inspect
+    # Keep going to the next page of results unless we got an image or blowzed up.
     google_image(query, page+=1) unless @image_url or @error
     @image_url
   end
