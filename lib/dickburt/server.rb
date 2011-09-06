@@ -13,6 +13,7 @@ module Dickburt
           puts "Connected to #{@campfire.host} with token #{@campfire.token}"
           puts "="*45
           @room = @campfire.rooms.detect{|r| r.name.downcase.gsub(/\s/,'_') == args[:room].downcase.gsub(/\s/,'_')}
+          raise Dickburt::Error, "Could not find a campfire room that matches \"#{args[:room]}\"" unless @room
           @room.join
           puts "Ready for messages..."
           puts "="*45
