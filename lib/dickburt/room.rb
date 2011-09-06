@@ -37,6 +37,19 @@ module Dickburt
       )
     end
     
+    # Returns an Array of current users for the room.
+    def users
+      response = @campfire.http.get("/room/#{id}.json")
+      room = Map.new(JSON.parse(response.body)["room"])
+      room.users
+    end
+    
+    # Looks up the user by user_id for the current users in the room
+    #
+    #  user_id - String 37signals user id
+    #
+    # Returns a Dickburt::User if it finds that user in the room
+    # Raises an error if they can't be found.
     def find_user(user_id)
       user = users.detect{|u| u.id == user_id}
       raise Dickburt::Error, "user #{user_id} not found" unless user

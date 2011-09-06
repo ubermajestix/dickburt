@@ -44,3 +44,7 @@ TODO
 ----
 * Use a better http library like faraday. Patron sucks. 
 * Use yajl to parse json stream.
+* Make dickburt helpful. Like if he doesn't know a command he should tell you and probably also tell you what he does know.
+* Keep a list of Dickburt::Users around
+* Lookup everyone in the Room when we connect
+* Lookup the user that messaged dickburt from our list of Users, or, go get the info for the user and store them in the list.
