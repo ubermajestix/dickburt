@@ -13,7 +13,8 @@ describe Dickburt::Config do
     Dickburt::Config.set_token("shabam", 'boooooom')
     Dir.exists?("#{Dir.home}/.dickburt").must_equal true
     File.exists?("#{Dir.home}/.dickburt/config.yml").must_equal true
-    Dickburt::Config.config.must_equal ({:shabam => {:token => "boooooom"}}) 
+    Dickburt::Config.config.keys.must_include :shabam
+    Dickburt::Config.config[:shabam].must_equal ({:token => "boooooom"})
   end
   
   it "should read config" do

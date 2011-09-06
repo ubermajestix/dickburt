@@ -36,7 +36,13 @@ module Dickburt
         :auth => "#{campfire.token}:x"
       )
     end
-  
+    
+    def find_user(user_id)
+      user = users.detect{|u| u.id == user_id}
+      raise Dickburt::Error, "user #{user_id} not found" unless user
+      User.new(user.to_json, campfire)
+    end
+    
     def handle_failure
     
     end

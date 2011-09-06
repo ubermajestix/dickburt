@@ -18,7 +18,7 @@ class Dickburt::Bot
     
    def self.process(message, room, campfire)
     if message[:type] == 'TextMessage' && message.body.match(/\bdickburt\b/i)
-      dickburt = Dickburt::Bot.new(message, Dickburt::User.new(message.user_id, campfire), room)
+      dickburt = Dickburt::Bot.new(message, room.find_user(message.user_id), room)
       command  = dickburt.parse_command
       args     = dickburt.parse_args
       if command

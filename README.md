@@ -39,3 +39,8 @@ Examples
     
     Tyler: dickburt whatup
     # => dickburt: whatup Tyler
+    
+TODO
+----
+* Use a better http library like faraday. Patron sucks. 
+* Use yajl to parse json stream.
