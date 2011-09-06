@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = Dickburt::VERSION
   s.authors     = ["Tyler Montgomery"]
   s.email       = ["tyler@everlater.com"]
-  s.homepage    = ""
+  s.homepage    = "http://github.com/ubermajestix/dickburt"
   s.summary     = %q{Campfire bot}
   s.description = %q{Dickburt finds pugs}
 
