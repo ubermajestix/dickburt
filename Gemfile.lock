@@ -11,12 +11,12 @@ PATH
     dickburt (0.0.5)
       addressable (~> 2.2.6)
       eventmachine (~> 0.12.10)
-      json (~> 1.5.1)
       logging (~> 1.5.1)
       map (~> 4.3.0)
       patron (~> 0.4.11)
       trollop (~> 1.16.2)
       twitter-stream (~> 0.1.14)
+      yajl-ruby (~> 0.8.3)
 
 GEM
   remote: http://rubygems.org/
@@ -29,14 +29,13 @@ GEM
     growl (1.0.3)
     guard (0.6.2)
       thor (~> 0.14.6)
-    http_parser.rb (0.5.1)
-    json (1.5.3)
+    http_parser.rb (0.5.2)
     little-plugger (1.1.2)
     logging (1.5.2)
       little-plugger (>= 1.1.2)
     map (4.3.0)
     minitest (2.2.2)
-    patron (0.4.14)
+    patron (0.4.16)
     rb-fsevent (0.4.3.1)
     simple_oauth (0.1.5)
     thor (0.14.6)
@@ -46,6 +45,7 @@ GEM
       http_parser.rb (~> 0.5.1)
       simple_oauth (~> 0.1.4)
     vcr (1.11.1)
+    yajl-ruby (0.8.3)
 
 PLATFORMS
   ruby

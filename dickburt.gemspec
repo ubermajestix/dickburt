@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "logging"            , "~> 1.5.1"
   s.add_dependency "trollop"            , "~> 1.16.2"
   s.add_dependency 'twitter-stream'     , "~> 0.1.14"
-  s.add_dependency 'json'               , "~> 1.5.1"
+  s.add_dependency 'yajl-ruby'          , "~> 0.8.3"
   s.add_dependency "addressable"        , "~> 2.2.6"
   s.add_dependency 'map'                , "~> 4.3.0"
 
